@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Menu de Opções</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 	<h1>Menu de Usuários</h1>

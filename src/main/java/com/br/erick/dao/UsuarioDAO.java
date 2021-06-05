@@ -166,6 +166,41 @@ public class UsuarioDAO {
 		return usuario;
 	}
 	
+	public Usuario getVerificarUsuario(String email, String senha) throws SQLException {
+		
+		ResultSet resultSet = null;
+		Usuario usuario = null;
+		
+		String sql = null;
+		estadoOperacao = false;
+		connection = getConexao();
+		
+		try {
+			sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, email);
+			statement.setString(2, senha);
+			
+			resultSet = statement.executeQuery();
+			
+			if (resultSet.next()) {
+				
+				usuario = new Usuario();
+				usuario.setId(resultSet.getInt(1));
+				usuario.setNome(resultSet.getString(2));
+				usuario.setEmail(resultSet.getString(3));
+				usuario.setSenha(resultSet.getString(4));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return usuario;
+	}
+	
 	private Connection getConexao() throws SQLException {
 		
 		return Conexao.getConnection();

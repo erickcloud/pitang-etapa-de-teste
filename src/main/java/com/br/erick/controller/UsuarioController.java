@@ -15,16 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.br.erick.dao.UsuarioDAO;
 import com.br.erick.model.Usuario;
 
-/**
- * Servlet implementation class UsuarioController
- */
+
 @WebServlet(description = "administra a tabela de usuarios", urlPatterns = { "/usuarios" })
 public class UsuarioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
     public UsuarioController() {
         super();
         // TODO Auto-generated constructor stub
