@@ -1,0 +1,45 @@
+body {
+	background-color: #E6E6E6;
+	font-family: sans-serif;
+}
+
+.title {
+	color: #C32704;
+	text-align: center;
+}
+
+.btn {
+background-image: linear-gradient(to right, #D22222, #CC0B0B);
+	width: 100%;
+	border-radius: 10px;
+	padding: 15px;
+	color: #FF4000;
+	border: 0px;
+	outline: 0;
+
+}
+.btn a {
+	text-decoration: none;
+}
+
+.frase {
+	color: #FFF;
+	font-size: 24px;
+}
+
+.pagecentro {
+	width: 500px;
+   margin: 10px auto;
+   box-shadow: 1px 1px 5px #ccc;
+	background-color: #FAFAFA;
+	padding: 30px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.imgmenu {
+	border-radius: 10px;
+	width: 100px;
+	box-shadow: 10px 10px 5px #CCC;
+
+}

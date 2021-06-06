@@ -1,0 +1,69 @@
+body {
+	background-color: #E6E6E6;
+	font-family: sans-serif;
+}
+
+.pagecentro {
+	width: 500px;
+   margin: 10px auto;
+   box-shadow: 1px 1px 5px #ccc;
+	background-color: #FAFAFA;
+	padding: 30px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.imgcriar {
+	border-radius: 10px;
+	width: 100px;
+	box-shadow: 10px 10px 5px #CCC;
+
+}
+
+.title {
+	color: #C32704;
+	text-align: center;
+}
+
+.salvarcentro {
+	background-image: linear-gradient(to right, #E30303, #C32704);
+	width: 100%;
+	border-radius: 30px;
+	padding: 15px;
+	color: #FFFF;
+	border: 0px;
+	outline: 0;
+	margin-top: 20px;
+	font-size: 20px;
+
+}
+
+.textocriar {
+	color: #000000;
+	font-size: 24px;
+}
+
+.tablecadastro {
+	border-collapse:separate;
+    border:solid black 1px;
+    border-radius:6px;
+    width: 100%;
+    border-spacing: 0;
+    padding: 15px;
+    
+}
+
+.inputcentro {
+	width: 90%;
+	height: 40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	font-size: 25px;
+	padding-left: 10px;
+
+}
+.tdcentro{
+	width: 1px;
+
+}

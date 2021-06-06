@@ -5,6 +5,8 @@ import java.net.http.HttpResponse;
 import java.rmi.ServerException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,7 @@ public class LoginController extends HttpServlet {
 		super();
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException {
 		// TODO Auto-generated method stub
 
 		String opcao = request.getParameter("opcao");
@@ -33,10 +35,14 @@ public class LoginController extends HttpServlet {
 			try {
 				Usuario usuarioFiltrado = usuarioDAO.getVerificarUsuario(request.getParameter("email"), (request.getParameter("senha")));
 				if (usuarioFiltrado != null) {
-					System.out.println("Usuário encotrado " + usuarioFiltrado.getNome());
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
+					requestDispatcher.forward(request, response);
+					System.out.println("Usuário encontrado " + usuarioFiltrado.getNome());
 					
 				} else {
 					System.out.println("Usuário e senha incorreta!");
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/erro.jsp");
+					requestDispatcher.forward(request, response);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

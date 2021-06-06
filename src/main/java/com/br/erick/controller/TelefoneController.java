@@ -12,16 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.br.erick.dao.TelefoneDAO;
 import com.br.erick.dao.UsuarioDAO;
+import com.br.erick.model.Telefone;
 import com.br.erick.model.Usuario;
 
 
-@WebServlet(description = "administra a tabela de usuarios", urlPatterns = { "/usuarios" })
-public class UsuarioController extends HttpServlet {
+@WebServlet(description = "administra a tabela de telefones", urlPatterns = { "/telefones" })
+public class TelefoneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-    public UsuarioController() {
+    public TelefoneController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,20 +38,21 @@ public class UsuarioController extends HttpServlet {
 		
 		if (opcao.equals("criar")) {
 			System.out.println("Você escolheu a opção de criar");
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/criar.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/criartelefone.jsp");
 			requestDispatcher.forward(request, response);
 		} else if (opcao.equals("lista")) {
 			
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			List<Usuario> lista = new ArrayList<>();
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
+			List<Telefone> lista = new ArrayList<>();
 			try {
-				lista = usuarioDAO.getUsuario();
-				for (Usuario usuario : lista) {
-					System.out.println(usuario);
+				UsuarioDAO usuarioDAO = new UsuarioDAO();
+				lista = telefoneDAO.getTelofone(usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id"))));
+				for (Telefone telefone : lista) {
+					System.out.println(telefone);
 				}
 				
 				request.setAttribute("lista", lista);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/lista.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/listatelefone.jsp");
 				requestDispatcher.forward(request, response);
 				
 			} catch (SQLException e) {
@@ -61,12 +64,12 @@ public class UsuarioController extends HttpServlet {
 		} else if (opcao.equals("editar")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			System.out.println("Editar id: " + id);
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			Usuario usuario = new Usuario();
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
+			Telefone telefone = new Telefone();
 			try {
-				usuario = usuarioDAO.getUsuario(id);
-				System.out.println(usuario);
-				request.setAttribute("usuario", usuario);
+				telefone = telefoneDAO.getTelefone(id);
+				System.out.println(telefone);
+				request.setAttribute("telefone", telefone);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/editar.jsp");
 				requestDispatcher.forward(request, response);
 				
@@ -75,13 +78,13 @@ public class UsuarioController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if (opcao.equals("deletarUsuario")) {
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
+		}else if (opcao.equals("deletarTelefone")) {
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
 			int id = Integer.parseInt(request.getParameter("id"));
 			try {
-				usuarioDAO.deletarUsuario(id);
+				telefoneDAO.deletarTelefone(id);
 				System.out.println("Deletado com sucesso...");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
 				requestDispatcher.forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -100,13 +103,14 @@ public class UsuarioController extends HttpServlet {
 		String opcao = request.getParameter("opcao");
 		
 		if (opcao.equals("salvar")) {
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			Usuario usuario = new Usuario();
-			usuario.setNome(request.getParameter("nome"));
-			usuario.setEmail(request.getParameter("email"));
-			usuario.setSenha(request.getParameter("senha"));
+			Telefone telefone = new Telefone();
+			telefone.setDdd(Integer.parseInt(request.getParameter("ddd")));
+			telefone.setNumero(request.getParameter("numero"));
+			telefone.setTipo(request.getParameter("tipo"));
 			try {
-				usuarioDAO.salvarUsuario(usuario);
+				telefoneDAO.salvarTelefone(telefone,usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id"))));
 				System.out.println("Registrado com sucesso...");
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
 				requestDispatcher.forward(request, response);
@@ -116,17 +120,17 @@ public class UsuarioController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if (opcao.equals("editar")) {
-			Usuario usuario = new Usuario();
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			Telefone telefone = new Telefone();
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
 			
-			usuario.setId(Integer.parseInt(request.getParameter("id")));
-			usuario.setNome(request.getParameter("nome"));
-			usuario.setEmail(request.getParameter("email"));
-			usuario.setSenha(request.getParameter("senha"));
+			telefone.setId(Integer.parseInt(request.getParameter("id")));
+			telefone.setDdd(Integer.parseInt(request.getParameter("ddd")));
+			telefone.setNumero(request.getParameter("numero"));
+			telefone.setTipo(request.getParameter("tipo"));
 			try {
-				usuarioDAO.editarUsuario(usuario);
+				telefoneDAO.editarTelefone(telefone);
 				System.out.println("Editado com sucesso...");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
 				requestDispatcher.forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

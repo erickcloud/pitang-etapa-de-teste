@@ -7,6 +7,9 @@ public class Telefone {
 	private String numero;
 	private String tipo;
 	
+	public Telefone() {
+	}
+	
 	
 	public Telefone(Integer ddd, String numero, String tipo) {
 		this.ddd = ddd;
