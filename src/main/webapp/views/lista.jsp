@@ -26,7 +26,7 @@
 	</tr>
 	<c:forEach var="usuario" items="${lista}">
 		<tr class="textocriar">
-			<td> <a href="usuarios?opcao=editar&id=<c:out value="${usuario.id}"></c:out> "> <c:out value="${ usuario.id}"></c:out> </a> </td>
+			<td> <a href="usuarios?opcao=editar&id=<c:out value="${usuario.id}"></c:out> ">Alterar ID <c:out value="${ usuario.id}"></c:out> </a> </td>
 			<td> <c:out value="${ usuario.nome}"></c:out> </td>
 			<td> <c:out value="${ usuario.email}"></c:out> </td>
 			<td> <c:out value="${ usuario.senha}"></c:out> </td>

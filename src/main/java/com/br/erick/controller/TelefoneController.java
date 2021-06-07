@@ -47,16 +47,14 @@ public class TelefoneController extends HttpServlet {
 			try {
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
 				lista = telefoneDAO.getTelofone(usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id"))));
-				for (Telefone telefone : lista) {
-					System.out.println(telefone);
-				}
+				
 				
 				request.setAttribute("lista", lista);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/listatelefone.jsp");
-				requestDispatcher.forward(request, response);
+				
+				request.setAttribute("usuario_id", request.getParameter("id"));				
+				request.getRequestDispatcher("/views/listatelefone.jsp").forward(request, response);
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -70,7 +68,7 @@ public class TelefoneController extends HttpServlet {
 				telefone = telefoneDAO.getTelefone(id);
 				System.out.println(telefone);
 				request.setAttribute("telefone", telefone);
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/editar.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/editartelefone.jsp");
 				requestDispatcher.forward(request, response);
 				
 			} catch (SQLException e) {
@@ -84,7 +82,7 @@ public class TelefoneController extends HttpServlet {
 			try {
 				telefoneDAO.deletarTelefone(id);
 				System.out.println("Deletado com sucesso...");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
 				requestDispatcher.forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -99,7 +97,6 @@ public class TelefoneController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String opcao = request.getParameter("opcao");
 		
 		if (opcao.equals("salvar")) {
@@ -110,9 +107,11 @@ public class TelefoneController extends HttpServlet {
 			telefone.setNumero(request.getParameter("numero"));
 			telefone.setTipo(request.getParameter("tipo"));
 			try {
-				telefoneDAO.salvarTelefone(telefone,usuarioDAO.getUsuario(Integer.parseInt(request.getParameter("id"))));
+				String idUsuario = request.getParameter("usuario_id");
+				
+				telefoneDAO.salvarTelefone(telefone, usuarioDAO.getUsuario(Integer.valueOf(idUsuario)));
 				System.out.println("Registrado com sucesso...");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menutelefone.jsp");
 				requestDispatcher.forward(request, response);
 				
 			} catch (SQLException e) {
@@ -130,7 +129,7 @@ public class TelefoneController extends HttpServlet {
 			try {
 				telefoneDAO.editarTelefone(telefone);
 				System.out.println("Editado com sucesso...");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
 				requestDispatcher.forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

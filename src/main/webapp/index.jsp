@@ -7,12 +7,12 @@
 	<title>Controle de Acesso</title>
 
 	<link rel="stylesheet" href="css/estilo.css">
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	
 </head>
-<body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<body class="fundo">
 	<form class="form" action="login" method="post">
-	<input type="hidden" name="opcao" value="logar">
 		<div class="card">
 			<div class="card-top">
 				<img class="imglogin" src="img/user.png" alt="">
@@ -30,8 +30,12 @@
 					<input type="password" name="senha" placeholder="Digite sua senha" required>
 			</div>
 
-			<div class="card-group btn">
-				<button type="submit">ACESSAR</button>
+			<div class="">
+				<input type="submit" value="logar" name="opcao" class="btn btn-success mb-2 mt-2"></input>
+			</div>
+			
+			<div class="">
+				<a href="usuarios?opcao=criar" class="btn btn-primary">Cadastrar-se</a>
 			</div>
 			
 	</form>

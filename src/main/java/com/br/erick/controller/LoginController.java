@@ -39,6 +39,10 @@ public class LoginController extends HttpServlet {
 					requestDispatcher.forward(request, response);
 					System.out.println("Usuário encontrado " + usuarioFiltrado.getNome());
 					
+				} else if (opcao.equals("criar")) {
+					
+					request.getRequestDispatcher("/views/criar.jsp").forward(request, response);
+					
 				} else {
 					System.out.println("Usuário e senha incorreta!");
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/erro.jsp");

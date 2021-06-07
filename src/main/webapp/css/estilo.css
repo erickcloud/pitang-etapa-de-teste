@@ -1,4 +1,4 @@
-body {
+.fundo {
 	background-color: #E6E6E6;
 	font-family: sans-serif;
 }
@@ -60,4 +60,9 @@ body {
 
 .title {
 	color: #9B1616;
+}
+
+.novoregistro {
+	color: #FFFF;
+	text-decoration:none;
 }

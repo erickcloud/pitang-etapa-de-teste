@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Criar Telefone</title>
 
-<link rel="stylesheet" href="css/criar.css">
+<link rel="stylesheet" href="css/criartelefone.css">
 
 </head>
 <body>
@@ -15,25 +15,26 @@
 	<img class="imgcriar" src="img/user.png" alt="">
 	<h1 class="title">Criar Telefone</h1>
 	
-	<form action="usuarios" method="post">
+	<form action="telefones" method="post">
 	<input type="hidden" name="opcao" value="salvar">
+	<input type="hidden" name="usuario_id" value="${ param.id }">
 		<table class="tablecadastro">
 			<tr class="textocriar">
 				<td class="tdcentro">DDD:</td>
-				<td><input class="inputcentro" type="text" name="nome"></td>
+				<td><input class="inputcentro" type="text" name="ddd"></td>
+			</tr>
+			
+			<tr class="textocriar">
+				<td class="tdcentro">Numero:</td>
+				<td><input class="inputcentro" type="text" name="numero"></td>
 			</tr>
 			
 			<tr class="textocriar">
 				<td class="tdcentro">Tipo:</td>
-				<td><input class="inputcentro" type="email" name="email"></td>
-			</tr>
-			
-			<tr class="textocriar">
-				<td class="tdcentro">Senha:</td>
-				<td><input class="inputcentro" type="password" name="senha"></td>
+				<td><input class="inputcentro" type="text" name="tipo"></td>
 			</tr>	
 		</table>	
-		<input type="submit" value="Salvar" class="salvarcentro">
+		<input type="submit" value="salvar" class="salvarcentro">
 	</form>
 	</div>
 </body>

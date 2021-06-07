@@ -115,7 +115,7 @@ public class TelefoneDAO {
 			sql = "SELECT * FROM telefones WHERE id_usuario = ?";
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, usuario.getId());
-			resultSet = statement.executeQuery(sql);
+			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				
 				Telefone telefone = new Telefone();
