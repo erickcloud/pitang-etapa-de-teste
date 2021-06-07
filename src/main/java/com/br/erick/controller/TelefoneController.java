@@ -111,7 +111,7 @@ public class TelefoneController extends HttpServlet {
 				
 				telefoneDAO.salvarTelefone(telefone, usuarioDAO.getUsuario(Integer.valueOf(idUsuario)));
 				System.out.println("Registrado com sucesso...");
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menutelefone.jsp");
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/menu.jsp");
 				requestDispatcher.forward(request, response);
 				
 			} catch (SQLException e) {
